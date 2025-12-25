@@ -14,7 +14,7 @@
   }
   
   #map{
-    height:850px;
+    height:825px;
     }
 
   #header{
@@ -73,6 +73,7 @@ fetch('partido.geojson')
         fillColor: "#000",
         fillOpacity: 0.5,
         stroke: false
+        fillRule: 'evenodd'
       }
     ).addTo(map);
   });
