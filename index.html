@@ -41,6 +41,13 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
+        
+fetch('partido.geojson')
+  .then(res => res.json())
+  .then(data => {
+    const partido = L.geoJSON(data).addTo(map);
+    map.fitBounds(partido.getBounds());
+  });
     </script>
 </body>
 
