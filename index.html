@@ -52,8 +52,27 @@ fetch('partido.geojson')
     map.fitBounds(bounds);
     map.setMaxBounds(bounds);
     map.setMinZoom(map.getZoom());
+      
+  const world = [
+      [-90, -180],
+      [-90, 180],
+      [90, 180],
+      [90, -180]
+    ];
+
+    const partidoCoords = data.features[0].geometry.coordinates;
+
+    L.polygon(
+      [world, partidoCoords],
+      {
+        color: null,
+        fillColor: "#000",
+        fillOpacity: 0.5,
+        stroke: false
+      }
+    ).addTo(map);
   });
-    </script>
+</script>
 </body>
 
 </html>
