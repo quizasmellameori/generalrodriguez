@@ -14,7 +14,7 @@
   }
   
   #map{
-    height:800px;
+    height:850px;
     }
 
   #header{
@@ -61,9 +61,13 @@ fetch('partido.geojson')
     ];
 
     const partidoCoords = data.features[0].geometry.coordinates;
+    const maskCoords = [world];
+    partidoCoords.forEach(poligono => {
+    maskCoords.push(poligono[0]);
+    });
 
     L.polygon(
-      [world, partidoCoords],
+      maskCoords,
       {
         color: null,
         fillColor: "#000",
