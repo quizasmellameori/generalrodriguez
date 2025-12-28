@@ -32,6 +32,7 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin="">
     </script>
+    
     <script>
     var map=L.map('map').setView([-34.61, -58.96], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -41,21 +42,16 @@
     .then(data => {
       L.geoJSON(data).addTo(map);
     });
+
+    function lugar(lat, lng, nombre, link){
+    const marcador=L.marker([lat, lng]).addTo(map);
+    marcador.bindTooltip(nombre);
+    marcador.on("click", () => {window.location.href = link;});
+    }
         
-    const lugar=L.marker([-34.606082, -58.952004]).addTo(map);
-    lugar.bindTooltip("Iglesia Nuestra Señora del Carmen");
-    lugar.on("click", () => {window.location.href = "iglesiaNSC.html";}
-    ); 
-
-    const lugar=L.marker([-34.606416, -58.949729]).addTo(map);
-    lugar.bindTooltip("Escuela N°1");
-    lugar.on("click", () => {window.location.href = "escuela1.html";}
-    ); 
-
-    const lugar=L.marker([-34.622526, -58.948667]).addTo(map);
-    lugar.bindTooltip("Hospital Vicente Lopez y Planes");
-    lugar.on("click", () => {window.location.href = "vicentelopez.html";}
-    ); 
+    lugar(-34.606082, -58.952004, "Iglesia Nuestra Señora del Carmen", "iglesiaNSC.html"); 
+    lugar(-34.606416, -58.949729, "Escuela N°1", "escuela1.html"); 
+    lugar(-34.622526, -58.948667, "Hospital Vicente Lopez y Planes", "vicentelopez.html"); 
 </script>
 </body>
 </html>
