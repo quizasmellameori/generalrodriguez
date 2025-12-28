@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,58 +25,23 @@
 </style>
 </head>
 <body>
-    <div id="header">
-    <h1>General Rodríguez</h1>
-    </div>
+    <div id="header"><h1>General Rodríguez</h1></div>
     <div id="map"></div>
     <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin="">
     </script>
+    
     <script>
-    var map = L.map('map').setView([-34.61, -58.96], 11);
-
+    var map=L.map('map').setView([-34.61, -58.96], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+    attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
         
-fetch('partido.geojson')
-  .then(res => res.json())
-  .then(data => {
-    const partido = L.geoJSON(data).addTo(map);
-
-    const bounds = partido.getBounds();
-
-    map.fitBounds(bounds);
-    map.setMaxBounds(bounds);
-    map.setMinZoom(map.getZoom());
-      
-  const world = [
-      [-90, -180],
-      [-90, 180],
-      [90, 180],
-      [90, -180]
-    ];
-
-    const partidoCoords = data.features[0].geometry.coordinates;
-    const maskCoords = [world];
-    partidoCoords.forEach(poligono => {
-    maskCoords.push(poligono[0]);
-    });
-
-    L.polygon(
-      maskCoords,
-      {
-        color: null,
-        fillColor: "#000",
-        fillOpacity: 0.5,
-        stroke: false,
-        fillRule: 'evenodd'
-      }
-    ).addTo(map);
-  });
+    const lugar=L.marker([-34.61, -58.96]).addTo(map);
+    lugar.bindTooltip("Lugar histórico");
+    lugar.on("click", () => {window.location.href = "lugar.html";}
+    ); 
 </script>
 </body>
-
 </html>
