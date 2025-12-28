@@ -32,11 +32,15 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin="">
     </script>
-    
     <script>
     var map=L.map('map').setView([-34.61, -58.96], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
+    fetch('partido.geojson')
+    .then(response => response.json())
+    .then(data => {
+      L.geoJSON(data).addTo(map);
+    });
         
     const lugar=L.marker([-34.606082, -58.952004]).addTo(map);
     lugar.bindTooltip("Iglesia Nuestra Señora del Carmen");
