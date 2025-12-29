@@ -60,13 +60,14 @@
     </script>
     
     <script>
-    var map=L.map('map').setView([-34.61, -58.96], 12);
+    var map=L.map('map');
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
     fetch('partido.geojson')
     .then(response => response.json())
     .then(data => {
-      L.geoJSON(data).addTo(map);
+      const partido = L.geoJSON(data).addTo(map);
+      map.fitBounds(partido.getBounds());
     });
 
     function lugar(lat, lng, nombre, link){
