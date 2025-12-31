@@ -72,7 +72,7 @@
 
     function lugar(lat, lng, nombre, link){
     const marcador=L.marker([lat, lng]).addTo(map);
-    marcador.bindTooltip(nombre), {
+    marcador.bindTooltip(nombre, {
     direction: "top",
     offset: [0, -10]
     });
