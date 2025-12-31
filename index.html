@@ -59,31 +59,37 @@
     crossorigin="">
     </script>
     
-    <script>
-    var map=L.map('map');
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
-    fetch('partido.geojson')
-    .then(response => response.json())
-    .then(data => {
-      const partido = L.geoJSON(data).addTo(map);
-      map.fitBounds(partido.getBounds());
-    });
+<script>
+  var map = L.map('map');
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
 
-    function lugar(lat, lng, nombre, link){
-    const marcador=L.marker([lat, lng]).addTo(map);
-    marcador.bindTooltip(nombre, {
-    direction: "top",
-    offset: [0, -10]
-    });
-    marcador.on("click", () => {window.location.href = link;});
-    }
-        
-    lugar(-34.606082, -58.952004, "Iglesia Nuestra Señora del Carmen", "iglesiaNSC.html"); 
-    lugar(-34.606416, -58.949729, "Escuela N°1", "escuela1.html"); 
-    lugar(-34.622526, -58.948667, "Hospital Vicente Lopez y Planes", "vicentelopez.html"); 
-    lugar(-34.615191, -58.957639, "EEST N°1 Javier Tapie", "tapie.html");
-    lugar(-34.71463, -59.05626, "Hospital Nacional Dr. Baldomero Sommer", "sommer.html");
+fetch('partido.geojson')
+.then(response => response.json())
+.then(data => {
+const partido = L.geoJSON(data).addTo(map);
+map.fitBounds(partido.getBounds());
+});
+
+function lugar(lat, lng, nombre, link) {
+const marcador = L.marker([lat, lng]).addTo(map);
+
+marcador.bindTooltip(nombre, {
+direction: "top",
+offset: [0, -10]
+});
+
+marcador.on("click", () => {
+window.location.href = link;
+});
+  }
+
+  lugar(-34.606082, -58.952004, "Iglesia Nuestra Señora del Carmen", "iglesiaNSC.html");
+  lugar(-34.606416, -58.949729, "Escuela N°1", "escuela1.html");
+  lugar(-34.622526, -58.948667, "Hospital Vicente Lopez y Planes", "vicentelopez.html");
+  lugar(-34.615191, -58.957639, "EEST N°1 Javier Tapie", "tapie.html");
+  lugar(-34.71463, -59.05626, "Hospital Nacional Dr. Baldomero Sommer", "sommer.html");
 </script>
 </body>
 </html>
